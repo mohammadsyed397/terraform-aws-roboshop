@@ -61,7 +61,7 @@ resource "aws_ec2_instance_state" "main" {
 }
 resource "aws_ami_from_instance" "main" {
   name               = "${var.project}-${var.environment}-${var.component}"
-  source_instance_id = aws_instance.main
+  source_instance_id = aws_instance.main.id
   depends_on = [ aws_ec2_instance_state.main ]
   tags = merge(
     local.common_tags,{
@@ -161,7 +161,7 @@ resource "aws_lb_listener_rule" "main" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.main
+    target_group_arn = aws_lb_target_group.main.arn
   }
 
   condition {
