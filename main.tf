@@ -144,7 +144,7 @@ resource "terraform_data" "main_delete" {
 }
 resource "aws_autoscaling_policy" "main" {
   name                   = "${var.project}-${var.environment}-${var.component}"
-  autoscaling_group_name = aws_autoscaling_group.main
+  autoscaling_group_name = aws_autoscaling_group.main.name
   policy_type            = "TargetTrackingScaling"
   target_tracking_configuration {
     predefined_metric_specification {
