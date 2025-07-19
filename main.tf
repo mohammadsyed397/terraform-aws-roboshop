@@ -84,7 +84,7 @@ resource "terraform_data" "main_delete" {
   resource "aws_launch_template" "main" {
   name = "${var.project}-${var.environment}-${var.component}"
 
-  image_id = aws_ami_from_instance.main
+  image_id = aws_ami_from_instance.main.id
   instance_initiated_shutdown_behavior = "terminate"
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.sg_id]
@@ -104,14 +104,14 @@ resource "terraform_data" "main_delete" {
   desired_capacity   = 1
   max_size           = 10
   min_size           = 1
-  target_group_arns = [ aws_lb_target_group.main ]
+  target_group_arns = [ aws_lb_target_group.main.arn ]
   vpc_zone_identifier = local.private_subnet_ids
   health_check_grace_period = 90
   health_check_type         = "ELB"
 
   launch_template {
-    id      = aws_launch_template.main
-    version = aws_launch_template.main
+    id      = aws_launch_template.main.id
+    version = aws_launch_template.main.latest_version
   }
 
   dynamic "tag" {
