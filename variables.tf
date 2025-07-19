@@ -1,16 +1,18 @@
 variable "project" {
     default = "roboshop"
-    type = "string"
+    type = string
   
 }
 variable "environment" {
-    type = "string"
+    type = string
+    default = "dev"
 }
 variable "component" {
-    type = "string"
+    type = string
 }
 variable "zone_name" {
      default = "robosyed.space"
 }
 variable "rule_priority" {
-}
+
+} 
