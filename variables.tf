@@ -16,3 +16,6 @@ variable "zone_name" {
 variable "rule_priority" {
 
 } 
+variable "zone_id" {
+    default = "Z01504851BCZC2Y77VRX8"
+}
